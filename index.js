@@ -1,13 +1,16 @@
 const erase = (word) => {
+  let returnThis;
   // Turn string into array
   let checkThisWord = word.split("");
   // Check for any letters, if any are found it will run removePercent
   // Else it will return an empty string
   if (checkForLetters(checkThisWord)) {
-    removePercent(checkThisWord);
+    returnThis = removePercent(checkThisWord);
   } else {
     console.log('""');
+    returnThis = '""';
   }
+  return returnThis;
 };
 
 const removePercent = (thisWord) => {
@@ -29,6 +32,7 @@ const removePercent = (thisWord) => {
   // Turn array into string
   newWord = newWord.join("");
   console.log(newWord);
+  return newWord;
 };
 
 const checkForLetters = (word) => {
@@ -43,10 +47,15 @@ const checkForLetters = (word) => {
   return anyLetters;
 };
 
-erase("he%%l%hel%llo");
-erase("major% spar%%ks");
-erase("si%%%t boy");
-erase("%%%%");
+const first = erase("he%%l%hel%llo");
+const second = erase("major% spar%%ks");
+const third = erase("si%%%t boy");
+const fourth = erase("%%%%");
+
+document.querySelector("#first").textContent = first;
+document.querySelector("#second").textContent = second;
+document.querySelector("#third").textContent = third;
+document.querySelector("#fourth").textContent = fourth;
 
 // erase("he%%l%hel%llo") ➞ "hello"
 
