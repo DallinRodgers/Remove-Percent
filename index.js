@@ -1,68 +1,41 @@
 const erase = (word) => {
+  // Turn string into array
   let checkThisWord = word.split("");
-  // Check for any letters
+  // Check for any letters, if any are found it will run removePercent
+  // Else it will return an empty string
   if (checkForLetters(checkThisWord)) {
-    let theseIndexs = getPercentIndex(checkThisWord);
-    // console.log(theseIndexs);
-    removePercent(checkThisWord, theseIndexs);
+    removePercent(checkThisWord);
   } else {
     console.log('""');
   }
 };
 
-const removePercent = (thisWord, removeHere) => {
+const removePercent = (thisWord) => {
+  // Created newWord to leave thisWord unchanged
   let newWord = thisWord;
-  // console.log(thisWord);
-  // console.log(removeHere);
-  for (let i = thisWord.length - 1; i >= 0; i--) {
-    if (removeHere.includes(i)) {
-      // console.log(`found a index to remove here: ${i}`);
+  for (let i = 0; i < thisWord.length; i++) {
+    if (newWord[i] === "%") {
+      // If first index is a '%' only remove that index
       if (i === 0) {
-        // console.log(newWord);
         newWord.splice(i, 1);
-        // console.log("first character");
-        // console.log(newWord);
+        // if a '%' is found, remove the index before and the '%'
       } else {
-        // console.log(i);
         newWord.splice(i - 1, 2);
-        // console.log("first character");
-        // console.log(newWord);
+        // Change i to repeat previous index to check for repeated '%'
+        i = i - 2;
       }
     }
   }
-  // for (let i = 0; i < newWord.length; i++) {
-  //   if (removeHere.includes(i)) {
-  //     // console.log(`found a index to remove here: ${i}`);
-  //     if (i === 0) {
-  //       // console.log(newWord);
-  //       newWord.splice(i, 1);
-  //       // console.log("first character");
-  //       // console.log(newWord);
-  //     } else {
-  //       // console.log(i);
-  //       newWord.splice(i - 1, 2);
-  //       // console.log("first character");
-  //       // console.log(newWord);
-  //     }
-  //   }
-  // }
+  // Turn array into string
   newWord = newWord.join("");
   console.log(newWord);
-};
-
-const getPercentIndex = (word) => {
-  let percentHere = [];
-  for (let i = 0; i < word.length; i++) {
-    if (word[i] === "%") {
-      percentHere.push(i);
-    }
-  }
-  return percentHere;
 };
 
 const checkForLetters = (word) => {
   let anyLetters = false;
   for (let i = 0; i < word.length; i++) {
+    // If a letter is found checkForLetters will return true
+    // Else it will return false
     if (word[i] !== "%") {
       anyLetters = true;
     }
