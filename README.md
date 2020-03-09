@@ -1,5 +1,9 @@
 # Remove Percent
  Coding Challange
+ 
+ ################
+ IMPORTANT: If you going to use Node.js or similar to get the results you will need to comment out lines 55-58 or you will get an error.
+ ################
 
 The idea of this challenge is to treat the '%' character as a backspace. So, if there is a letter before a '%' we need to remove that character and the '%'.
 
